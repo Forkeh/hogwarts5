@@ -45,7 +45,7 @@ public class Student {
   }
 
   public void setFirstName(String firstName) {
-    this.firstName = firstName;
+    this.firstName = capitalize(firstName);
   }
 
   public String getMiddleName() {
@@ -53,7 +53,7 @@ public class Student {
   }
 
   public void setMiddleName(String middleName) {
-    this.middleName = middleName;
+    this.middleName = capitalize(middleName);
   }
 
   public String getLastName() {
@@ -61,7 +61,53 @@ public class Student {
   }
 
   public void setLastName(String lastName) {
-    this.lastName = lastName;
+    this.lastName = capitalize(lastName);
+  }
+
+  public String getFullName() {
+    return firstName + (middleName != null ? " " + middleName : "") + " " + lastName;
+  }
+
+  public void setFullName(String fullName) {
+    if (fullName == null || fullName.isEmpty()) return;
+
+    int firstSpace = fullName.indexOf(' ');
+    int secondSpace = fullName.lastIndexOf(' ');
+
+    if (firstSpace == -1 || secondSpace == -1) {
+      setFirstName(fullName);
+      setMiddleName(null);
+      setLastName(null);
+      return;
+    }
+
+    int firstSpaceIndex = fullName.indexOf(' ');
+    int lastSpaceIndex = fullName.lastIndexOf(' ');
+
+
+    setFirstName(fullName.substring(0, firstSpaceIndex));
+    if (firstSpaceIndex == lastSpaceIndex) {
+      setMiddleName(null);
+      setLastName(fullName.substring(lastSpaceIndex + 1));
+    } else {
+      setMiddleName(fullName.substring(firstSpaceIndex + 1, lastSpaceIndex));
+      setLastName(fullName.substring(lastSpaceIndex + 1));
+    }
+
+
+//    String[] nameParts = fullName.split(" ", 3);
+//
+//    setFirstName(nameParts[0]);
+//
+//    if (nameParts.length > 1) {
+//      setLastName(nameParts[nameParts.length - 1]);
+//    }
+//
+//    if (nameParts.length == 3) {
+//      setMiddleName(nameParts[1]);
+//    } else {
+//      setMiddleName(null);
+//    }
   }
 
   public House getHouse() {
@@ -78,6 +124,12 @@ public class Student {
 
   public void setSchoolYear(Integer schoolYear) {
     this.schoolYear = schoolYear;
+  }
+
+  public String capitalize(String str) {
+    if(str == null) return null;
+    if (str.isEmpty()) return "";
+    return (str.substring(0, 1).toUpperCase() + str.substring(1).toLowerCase());
   }
 
   @Override

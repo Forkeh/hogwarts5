@@ -16,26 +16,22 @@ public interface PersonWithNames {
         if (fullName == null || fullName.isEmpty()) return;
 
         int firstSpace = fullName.indexOf(' ');
-        int secondSpace = fullName.lastIndexOf(' ');
+        int lastSpace = fullName.lastIndexOf(' ');
 
-        if (firstSpace == -1 || secondSpace == -1) {
+        if (firstSpace == -1 || lastSpace == -1) {
             setFirstName(fullName);
             setMiddleName(null);
             setLastName(null);
             return;
         }
 
-        int firstSpaceIndex = fullName.indexOf(' ');
-        int lastSpaceIndex = fullName.lastIndexOf(' ');
-
-
-        setFirstName((fullName.substring(0, firstSpaceIndex)));
-        if (firstSpaceIndex == lastSpaceIndex) {
+        setFirstName((fullName.substring(0, firstSpace)));
+        if (firstSpace == lastSpace) {
             setMiddleName(null);
-            setLastName(fullName.substring(lastSpaceIndex + 1));
+            setLastName(fullName.substring(lastSpace + 1));
         } else {
-            setMiddleName(fullName.substring(firstSpaceIndex + 1, lastSpaceIndex));
-            setLastName(fullName.substring(lastSpaceIndex + 1));
+            setMiddleName(fullName.substring(firstSpace + 1, lastSpace));
+            setLastName(fullName.substring(lastSpace + 1));
         }
     }
 

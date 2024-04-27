@@ -1,5 +1,6 @@
 package dk.kea.dat3js.hogwarts5.students;
 
+import dk.kea.dat3js.hogwarts5.common.Gender;
 import dk.kea.dat3js.hogwarts5.common.PersonWithNames;
 import dk.kea.dat3js.hogwarts5.house.House;
 import jakarta.persistence.*;
@@ -18,21 +19,24 @@ public class Student implements PersonWithNames {
     private House house;
     private Integer schoolYear; // 1-7
     private Boolean prefect;
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
 
     public Student() {
     }
 
-    public Student(String firstName, String lastName, House house, int schoolYear, Boolean prefect) {
-        this(firstName, null, lastName, house, schoolYear, prefect);
+    public Student(String firstName, String lastName, House house, int schoolYear, Boolean prefect, Gender gender) {
+        this(firstName, null, lastName, house, schoolYear, prefect, gender);
     }
 
-    public Student(String firstName, String middleName, String lastName, House house, int schoolYear, Boolean prefect) {
+    public Student(String firstName, String middleName, String lastName, House house, int schoolYear, Boolean prefect, Gender gender) {
         this.firstName = firstName;
         this.middleName = middleName;
         this.lastName = lastName;
         this.house = house;
         this.schoolYear = schoolYear;
         this.prefect = prefect;
+        this.gender = gender;
     }
 
     public int getId() {
@@ -92,6 +96,13 @@ public class Student implements PersonWithNames {
         this.prefect = prefect;
     }
 
+    public Gender getGender() {
+        return gender;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
+    }
 
     @Override
     public boolean equals(Object o) {

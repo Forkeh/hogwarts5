@@ -10,9 +10,11 @@ import java.util.List;
 public class PrefectService {
 
     private final StudentRepository studentRepository;
+    private final PrefectManagementService prefectManagementService;
 
-    public PrefectService(StudentRepository studentRepository) {
+    public PrefectService(StudentRepository studentRepository, PrefectManagementService prefectManagementService) {
         this.studentRepository = studentRepository;
+        this.prefectManagementService = prefectManagementService;
     }
 
     public List<Student> getAllPrefects() {
@@ -62,13 +64,8 @@ public class PrefectService {
 
     public void deletePrefect(Integer id) {
         Student student = studentRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("No prefect with id " + id));
+                .orElseThrow(() -> new IllegalArgumentException("No student with id " + id));
 
-        if (!student.isPrefect()) {
-            throw new IllegalArgumentException("Student with id " + id + " is not a prefect");
-        } else {
-            student.setPrefect(false);
-            studentRepository.save(student);
-        }
+        prefectManagementService.removePrefect(student);
     }
 }

@@ -1,5 +1,6 @@
 package dk.kea.dat3js.hogwarts5.config;
 
+import dk.kea.dat3js.hogwarts5.common.Gender;
 import dk.kea.dat3js.hogwarts5.house.HouseRepository;
 import dk.kea.dat3js.hogwarts5.students.Student;
 import dk.kea.dat3js.hogwarts5.students.StudentRepository;
@@ -41,20 +42,20 @@ public class InitData implements CommandLineRunner {
         Set<Student> existingStudents = new HashSet<>();
         existingStudents.addAll(studentRepository.findAll());
 
-        Student harry = new Student("Harry", "James", "Potter", gryffindor, 5, true);
-        Student hermione = new Student("Hermione", "Jean", "Granger", gryffindor, 5, false);
-        Student ron = new Student("Ron", "Bilius", "Weasley", gryffindor, 5, false);
-        Student neville = new Student("Neville", "Frank", "Longbottom", gryffindor, 6, true);
-        Student ginny = new Student("Ginny", "Molly", "Weasley", gryffindor, 4, false);
-        Student fred = new Student("Fred", "Gideon", "Weasley", gryffindor, 2, false);
-        Student george = new Student("George", "Fabian", "Weasley", gryffindor, 6, true);
-        Student percy = new Student("Percy", "Ignatius", "Weasley", gryffindor, 5, false);
+        Student harry = new Student("Harry", "James", "Potter", gryffindor, 5, true, Gender.MALE);
+        Student hermione = new Student("Hermione", "Jean", "Granger", gryffindor, 5, false, Gender.FEMALE);
+        Student ron = new Student("Ron", "Bilius", "Weasley", gryffindor, 5, false, Gender.MALE);
+        Student neville = new Student("Neville", "Frank", "Longbottom", gryffindor, 6, true, Gender.MALE);
+        Student ginny = new Student("Ginny", "Molly", "Weasley", gryffindor, 4, false, Gender.FEMALE);
+        Student fred = new Student("Fred", "Gideon", "Weasley", gryffindor, 2, false, Gender.MALE);
+        Student george = new Student("George", "Fabian", "Weasley", gryffindor, 6, true, Gender.MALE);
+        Student percy = new Student("Percy", "Ignatius", "Weasley", gryffindor, 5, false, Gender.MALE);
 
-        Student draco = new Student("Draco", "Malfoy", slytherin, 5, false);
-        Student cedric = new Student("Cedric", "Diggory", hufflepuff, 6, false);
-        Student luna = new Student("Luna", "Lovegood", ravenclaw, 4, false);
-        Student cho = new Student("Cho", "Chang", ravenclaw, 5, true);
-        Student padma = new Student("Padma", "Patil", ravenclaw, 5, true);
+        Student draco = new Student("Draco", "Malfoy", slytherin, 5, false, Gender.MALE);
+        Student cedric = new Student("Cedric", "Diggory", hufflepuff, 6, false, Gender.MALE);
+        Student luna = new Student("Luna", "Lovegood", ravenclaw, 4, false, Gender.FEMALE);
+        Student cho = new Student("Cho", "Chang", ravenclaw, 5, true, Gender.FEMALE);
+        Student padma = new Student("Padma", "Patil", ravenclaw, 5, true, Gender.FEMALE);
 
         existingStudents.addAll(List.of(harry, hermione, ron, neville, ginny, fred, george, percy, draco, cedric, luna, cho, padma));
         studentRepository.saveAll(existingStudents);

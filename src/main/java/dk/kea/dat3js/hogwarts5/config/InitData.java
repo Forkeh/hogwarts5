@@ -19,78 +19,80 @@ import java.util.stream.Collectors;
 @Component
 public class InitData implements CommandLineRunner {
 
-  private final HouseRepository houseRepository;
-  private final StudentRepository studentRepository;
-  private final TeacherRepository teacherRepository;
+    private final HouseRepository houseRepository;
+    private final StudentRepository studentRepository;
+    private final TeacherRepository teacherRepository;
 
-  public InitData(HouseRepository houseRepository, StudentRepository studentRepository, TeacherRepository teacherRepository) {
-    this.houseRepository = houseRepository;
-    this.studentRepository = studentRepository;
-    this.teacherRepository = teacherRepository;
-  }
+    public InitData(HouseRepository houseRepository, StudentRepository studentRepository, TeacherRepository teacherRepository) {
+        this.houseRepository = houseRepository;
+        this.studentRepository = studentRepository;
+        this.teacherRepository = teacherRepository;
+    }
 
-  @Override
-  public void run(String... args) throws Exception {
-    createHouses();
-    createStudents();
-    createTeachers();
-  }
+    @Override
+    public void run(String... args) throws Exception {
+        createHouses();
+        createStudents();
+        createTeachers();
+    }
 
-  private void createStudents() {
-    // To avoid creating and re-creating the same students, we first get all those that already exist
-    Set<Student> existingStudents = new HashSet<>();
-    existingStudents.addAll(studentRepository.findAll());
+    private void createStudents() {
+        // To avoid creating and re-creating the same students, we first get all those that already exist
+        Set<Student> existingStudents = new HashSet<>();
+        existingStudents.addAll(studentRepository.findAll());
 
-    Student harry = new Student("Harry", "James", "Potter", gryffindor, 5);
-    Student hermione = new Student("Hermione", "Jean", "Granger", gryffindor, 5);
-    Student ron = new Student("Ron", "Bilius", "Weasley", gryffindor, 5);
-    Student neville = new Student("Neville", "Frank", "Longbottom", gryffindor, 5);
-    Student ginny = new Student("Ginny", "Molly", "Weasley", gryffindor, 5);
-    Student fred = new Student("Fred", "Gideon", "Weasley", gryffindor, 5);
-    Student george = new Student("George", "Fabian", "Weasley", gryffindor, 5);
-    Student percy = new Student("Percy", "Ignatius", "Weasley", gryffindor, 5);
+        Student harry = new Student("Harry", "James", "Potter", gryffindor, 5, true);
+        Student hermione = new Student("Hermione", "Jean", "Granger", gryffindor, 5, false);
+        Student ron = new Student("Ron", "Bilius", "Weasley", gryffindor, 5, false);
+        Student neville = new Student("Neville", "Frank", "Longbottom", gryffindor, 6, true);
+        Student ginny = new Student("Ginny", "Molly", "Weasley", gryffindor, 4, false);
+        Student fred = new Student("Fred", "Gideon", "Weasley", gryffindor, 2, false);
+        Student george = new Student("George", "Fabian", "Weasley", gryffindor, 6, true);
+        Student percy = new Student("Percy", "Ignatius", "Weasley", gryffindor, 5, false);
 
-    Student draco = new Student("Draco", "Malfoy", slytherin, 5);
-    Student cedric = new Student("Cedric",  "Diggory", hufflepuff, 6);
-    Student luna = new Student("Luna",  "Lovegood", ravenclaw, 4);
+        Student draco = new Student("Draco", "Malfoy", slytherin, 5, false);
+        Student cedric = new Student("Cedric", "Diggory", hufflepuff, 6, false);
+        Student luna = new Student("Luna", "Lovegood", ravenclaw, 4, false);
+        Student cho = new Student("Cho", "Chang", ravenclaw, 5, true);
+        Student padma = new Student("Padma", "Patil", ravenclaw, 5, true);
 
-    existingStudents.addAll(List.of(harry, hermione, ron, neville, ginny, fred, george, percy, draco, cedric, luna));
-    studentRepository.saveAll(existingStudents);
-  }
+        existingStudents.addAll(List.of(harry, hermione, ron, neville, ginny, fred, george, percy, draco, cedric, luna, cho, padma));
+        studentRepository.saveAll(existingStudents);
+    }
 
-  private void createTeachers() {
-    // To avoid creating and re-creating the same teachers, we first get all those that already exist
-    Set<Teacher> existingTeachers = new HashSet<>();
-    existingTeachers.addAll(teacherRepository.findAll());
+    private void createTeachers() {
+        // To avoid creating and re-creating the same teachers, we first get all those that already exist
+        Set<Teacher> existingTeachers = new HashSet<>();
+        existingTeachers.addAll(teacherRepository.findAll());
 
-    Teacher severus = new Teacher("Severus", "Prince", "Snape", slytherin, "Potions", LocalDate.of(1981, 11, 1));
-    Teacher minerva = new Teacher("Minerva", "", "McGonagall", gryffindor, "Transfiguration", LocalDate.of(1956, 12, 1));
-    Teacher filius = new Teacher("Filius", "", "Flitwick", ravenclaw, "Charms", LocalDate.of(1975, 9, 1));
-    Teacher pomona = new Teacher("Pomona", "", "Sprout", hufflepuff, "Herbology", LocalDate.of(1975, 9, 1));
-    Teacher sybill = new Teacher("Sybill", "Cassandra", "Trelawney", ravenclaw, "Divination", LocalDate.of(1979, 9, 1));
-    Teacher alastor = new Teacher("Alastor", "Mad-Eye", "Moody", gryffindor, "Defence Against the Dark Arts", LocalDate.of(1994, 9, 1));
+        Teacher severus = new Teacher("Severus", "Prince", "Snape", slytherin, "Potions", LocalDate.of(1981, 11, 1));
+        Teacher minerva = new Teacher("Minerva", "", "McGonagall", gryffindor, "Transfiguration", LocalDate.of(1956, 12, 1));
+        Teacher filius = new Teacher("Filius", "", "Flitwick", ravenclaw, "Charms", LocalDate.of(1975, 9, 1));
+        Teacher pomona = new Teacher("Pomona", "", "Sprout", hufflepuff, "Herbology", LocalDate.of(1975, 9, 1));
+        Teacher sybill = new Teacher("Sybill", "Cassandra", "Trelawney", ravenclaw, "Divination", LocalDate.of(1979, 9, 1));
+        Teacher alastor = new Teacher("Alastor", "Mad-Eye", "Moody", gryffindor, "Defence Against the Dark Arts", LocalDate.of(1994, 9, 1));
 
-    existingTeachers.addAll(List.of(severus, minerva, filius, pomona, sybill, alastor));
-    teacherRepository.saveAll(existingTeachers);
-  }
+        existingTeachers.addAll(List.of(severus, minerva, filius, pomona, sybill, alastor));
+        teacherRepository.saveAll(existingTeachers);
+    }
 
-  private House gryffindor;
-  private House slytherin;
-  private House hufflepuff;
-  private House ravenclaw;
-
-
-  private void createHouses() {
-      gryffindor = new House("Gryffindor", "Godric Gryffindor", new String[] {"red", "gold"});
-      slytherin = new House("Slytherin", "Salazar Slytherin", new String[] {"green", "silver"});
-      hufflepuff = new House("Hufflepuff", "Helga Hufflepuff", new String[] {"yellow", "black"});
-      ravenclaw = new House("Ravenclaw", "Rowena Ravenclaw", new String[] {"blue", "bronze"});
-
-     houseRepository.save(gryffindor);
-      houseRepository.save(slytherin);
-      houseRepository.save(hufflepuff);
-      houseRepository.save(ravenclaw);
+    private House gryffindor;
+    private House slytherin;
+    private House hufflepuff;
+    private House ravenclaw;
 
 
-  }
+    private void createHouses() {
+        gryffindor = new House("Gryffindor", "Godric Gryffindor", new String[]{"red", "gold"});
+        slytherin = new House("Slytherin", "Salazar Slytherin", new String[]{"green", "silver"});
+        hufflepuff = new House("Hufflepuff", "Helga Hufflepuff", new String[]{"yellow", "black"});
+        ravenclaw = new House("Ravenclaw", "Rowena Ravenclaw", new String[]{"blue", "bronze"});
+
+        houseRepository.save(gryffindor);
+        houseRepository.save(slytherin);
+        houseRepository.save(hufflepuff);
+        houseRepository.save(ravenclaw);
+
+
+    }
 }

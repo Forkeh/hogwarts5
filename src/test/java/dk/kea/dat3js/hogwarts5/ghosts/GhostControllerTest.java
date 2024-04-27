@@ -39,4 +39,40 @@ class GhostControllerTest {
                 .andExpect(jsonPath("$.realName").value("Sir Nicholas de Mimsy-Porpington"))
                 .andExpect(jsonPath("$.house").value("Gryffindor"));
     }
+
+    @Test
+    void getGhostByPartialName() throws Exception {
+        mockMvc.perform(get("/ghosts/Nick"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.name").value("Nearly Headless Nick"))
+                .andExpect(jsonPath("$.realName").value("Sir Nicholas de Mimsy-Porpington"))
+                .andExpect(jsonPath("$.house").value("Gryffindor"));
+    }
+
+    @Test
+    void getGhostByLowerCaseName() throws Exception {
+        mockMvc.perform(get("/ghosts/nick"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.name").value("Nearly Headless Nick"))
+                .andExpect(jsonPath("$.realName").value("Sir Nicholas de Mimsy-Porpington"))
+                .andExpect(jsonPath("$.house").value("Gryffindor"));
+    }
+
+    @Test
+    void getGhostWithoutRealName() throws Exception {
+        mockMvc.perform(get("/ghosts/Bloody Baron"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.name").value("The Bloody Baron"))
+                .andExpect(jsonPath("$.realName").value("Baron"))
+                .andExpect(jsonPath("$.house").value("Slytherin"));
+    }
+
+    @Test
+    void getGhostWithAccidentalSpace() throws Exception {
+        mockMvc.perform(get("/ghosts/ lady"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.name").value("The Grey Lady"))
+                .andExpect(jsonPath("$.realName").value("Helena Ravenclaw"))
+                .andExpect(jsonPath("$.house").value("Ravenclaw"));
+    }
 }

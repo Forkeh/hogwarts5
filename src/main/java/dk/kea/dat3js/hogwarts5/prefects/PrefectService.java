@@ -41,14 +41,7 @@ public class PrefectService {
         Student student = studentRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("No student with id " + id));
 
-        if (student.isPrefect()) {
-            throw new IllegalArgumentException("Student with id " + id + " is already a prefect");
-        } else {
-            // TODO: Check for max two prefects per house, only one prefect per gender, candidates must be in year 5+
-            student.setPrefect(true);
-            studentRepository.save(student);
-            return student;
-        }
+        return prefectManagementService.createPrefect(student);
     }
 
     public List<Student> getPrefectsByHouse(String house) {

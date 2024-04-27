@@ -32,7 +32,7 @@ public class PrefectController {
         return ResponseEntity.ok(prefectService.getPrefectsByHouse(house));
     }
 
-    @PostMapping
+    @PostMapping("/{id}")
     public ResponseEntity<Student> createPrefect(@PathVariable Integer id) {
         return ResponseEntity.ok(prefectService.createPrefect(id));
     }

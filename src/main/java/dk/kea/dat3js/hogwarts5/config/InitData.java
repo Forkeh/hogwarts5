@@ -45,16 +45,16 @@ public class InitData implements CommandLineRunner {
         Student harry = new Student("Harry", "James", "Potter", gryffindor, 5, true, Gender.MALE);
         Student hermione = new Student("Hermione", "Jean", "Granger", gryffindor, 5, false, Gender.FEMALE);
         Student ron = new Student("Ron", "Bilius", "Weasley", gryffindor, 5, false, Gender.MALE);
-        Student neville = new Student("Neville", "Frank", "Longbottom", gryffindor, 6, true, Gender.MALE);
+        Student neville = new Student("Neville", "Frank", "Longbottom", gryffindor, 6, false, Gender.MALE);
         Student ginny = new Student("Ginny", "Molly", "Weasley", gryffindor, 4, false, Gender.FEMALE);
         Student fred = new Student("Fred", "Gideon", "Weasley", gryffindor, 2, false, Gender.MALE);
-        Student george = new Student("George", "Fabian", "Weasley", gryffindor, 6, true, Gender.MALE);
+        Student george = new Student("George", "Fabian", "Weasley", gryffindor, 6, false, Gender.MALE);
         Student percy = new Student("Percy", "Ignatius", "Weasley", gryffindor, 5, false, Gender.MALE);
 
-        Student draco = new Student("Draco", "Malfoy", slytherin, 5, false, Gender.MALE);
+        Student draco = new Student("Draco", "Malfoy", slytherin, 5, true, Gender.MALE);
         Student cedric = new Student("Cedric", "Diggory", hufflepuff, 6, false, Gender.MALE);
         Student luna = new Student("Luna", "Lovegood", ravenclaw, 4, false, Gender.FEMALE);
-        Student cho = new Student("Cho", "Chang", ravenclaw, 5, true, Gender.FEMALE);
+        Student cho = new Student("Cho", "Chang", ravenclaw, 5, false, Gender.FEMALE);
         Student padma = new Student("Padma", "Patil", ravenclaw, 5, true, Gender.FEMALE);
 
         existingStudents.addAll(List.of(harry, hermione, ron, neville, ginny, fred, george, percy, draco, cedric, luna, cho, padma));

@@ -1,5 +1,6 @@
 package dk.kea.dat3js.hogwarts5.students;
 
+import dk.kea.dat3js.hogwarts5.common.Gender;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -9,7 +10,7 @@ class StudentTest {
     @Test
     void getFullNameWithMiddleName() {
         // Arrange
-        Student student = new Student("Harry", "James", "Potter", null, 1, false);
+        Student student = new Student("Harry", "James", "Potter", null, 1, false, Gender.MALE);
 
         // Act
         String fullName = student.getFullName();
@@ -21,7 +22,7 @@ class StudentTest {
     @Test
     void getFullNameWithoutMiddleName() {
         // Arrange
-        Student student = new Student("Cho", null, "Chang", null, 1, false);
+        Student student = new Student("Cho", null, "Chang", null, 1, false, Gender.FEMALE);
 
         // Act
         String fullName = student.getFullName();
@@ -33,7 +34,7 @@ class StudentTest {
     @Test
     void setFullNameWithMiddleName() {
         // Arrange
-        Student student = new Student("first", "middle", "last", null, 5, false);
+        Student student = new Student("first", "middle", "last", null, 5, false, Gender.MALE);
 
         // Act
         student.setFullName("Ron Bilius Weasley");
@@ -47,7 +48,7 @@ class StudentTest {
     @Test
     void setFullNameWithoutMiddleName() {
         // Arrange
-        Student student = new Student("first", "middle", "last", null, 5, false);
+        Student student = new Student("first", "middle", "last", null, 5, false, Gender.MALE);
 
         // Act
         student.setFullName("Hermione Granger");
@@ -61,7 +62,7 @@ class StudentTest {
     @Test
     void setFullNameWithMultipleMiddleNames() {
         // Arrange
-        Student student = new Student("first", "middle", "last", null, 5, false);
+        Student student = new Student("first", "middle", "last", null, 5, false, Gender.MALE);
 
         // Act
         student.setFullName("Albus Percival Wulfric Brian Dumbledore");
@@ -75,7 +76,7 @@ class StudentTest {
     @Test
     void setFullNameWithoutLastName() {
         // Arrange
-        Student student = new Student("first", "middle", "last", null, 5, false);
+        Student student = new Student("first", "middle", "last", null, 5, false, Gender.MALE);
 
         // Act
         student.setFullName("Severus");
@@ -89,7 +90,7 @@ class StudentTest {
     @Test
     void setFullNameWithNull() {
         // Arrange
-        Student student = new Student("first", "middle", "last", null, 5, false);
+        Student student = new Student("first", "middle", "last", null, 5, false, Gender.MALE);
 
         // Act
         student.setFullName(null);
@@ -103,7 +104,7 @@ class StudentTest {
     @Test
     void setFullNameWithEmptyString() {
         // Arrange
-        Student student = new Student("first", "middle", "last", null, 5, false);
+        Student student = new Student("first", "middle", "last", null, 5, false, Gender.MALE);
 
         // Act
         student.setFullName("");
@@ -117,7 +118,7 @@ class StudentTest {
     @Test
     void capitalizeIndividualNames() {
         // Arrange
-        Student student = new Student("first", "middle", "last", null, 1, false);
+        Student student = new Student("first", "middle", "last", null, 1, false, Gender.MALE);
 
         // Act
         student.setFirstName("harry");
@@ -133,7 +134,7 @@ class StudentTest {
     @Test
     void capitalizeNamesWithCrazyCapitalization() {
         // Arrange
-        Student student = new Student("first", "middle", "last", null, 1, false);
+        Student student = new Student("first", "middle", "last", null, 1, false, Gender.MALE);
 
         // Act
         student.setFirstName("hArRy");
